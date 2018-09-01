@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block body %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>Bem vindo, {{ aluno.nome }}</h1>
+      <h2>Email: {{ aluno.email }}</h2>
+
+      <form method="GET" action="{{url_for('disciplina')}}">
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label ">Buscar Disciplina</label>
+
+          <div class="col-md-5">
+            <select class="js-example" name="id" style="width: 100%">
+              <option value="-1"></option>
+              {% for disciplina in disciplinas %}
+              <option value="{{disciplina['id_disciplina']}}">{{disciplina['nome_disciplina']}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col-md-3">
+              <button type="submit" class="btn btn-primary">
+                Buscar
+              </button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  $(".js-example").select2({
+  });
+
+</script> {% endblock %}

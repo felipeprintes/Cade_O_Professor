@@ -1,109 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block body %}
+<!-- Header -->
+<header class="masthead d-flex" >
+  <div class="container text-center my-auto">
+    <h1 class="mb-1" style="color: #fde900">Cadê o Professor?</h1>
+    <h3 class="mb-5" style="color: #fff">
+      <em>Quer experimentar??? É mais fácil que SO.</em>
+    </h3>
+    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Entre e confira!</a>
+  </div>
+  <div class="overlay"></div>
+</header>
+<!-- LOGIN -->
+<section class="callout">
+  <div class="container text-center">
+    <h2 class="mx-auto mb-5">Aqui entra o formulário e o cadastro com javascript</h2>
+  </div>
+      <form class="form-horizontal" method="POST" action="{{url_for('cadastro_usuario')}}">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="nome">Nome:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" id="nome" name="nome">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="email">Email:</label>
+          <div class="col-sm-4">
+            <input type="email" class="form-control" id="email" name="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="pwd">Senha:</label>
+          <div class="col-sm-4"> 
+            <input type="password" class="form-control" id="pwd" name="senha">
+          </div>
+        </div>
 
-  <head>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+      </form>
+</section>
+{% endblock %}
+    
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Cadê o Professor? - Unilasalle-RJ</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="static/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="static/css/stylish-portfolio.min.css" rel="stylesheet">
-
-  </head>
-
-  <body id="page-top">
-
-    <!-- Navigation -->
-    <a class="menu-toggle rounded" href="#">
-      <i class="fas fa-bars"></i>
-    </a>
-    <nav id="sidebar-wrapper">
-      <ul class="sidebar-nav">
-        <li class="sidebar-brand">
-          <a class="js-scroll-trigger" href="#page-top">Cadê o professor?</a>
-        </li>
-        <li class="sidebar-nav-item">
-          <a class="js-scroll-trigger" href="#page-top">Início</a>
-        </li>
-        <li class="sidebar-nav-item">
-          <a class="js-scroll-trigger" href="#about">Login e Cadastro</a>
-        </li>
-        <li class="sidebar-nav-item">
-          <a class="js-scroll-trigger" href="#contact">Contato</a>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- Header -->
-    <header class="masthead d-flex" >
-      <div class="container text-center my-auto">
-        <h1 class="mb-1" style="color: #fde900">Cadê o Professor?</h1>
-        <h3 class="mb-5" style="color: #fff">
-          <em>Quer experimentar??? É mais fácil que SO.</em>
-        </h3>
-        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Entre e confira!</a>
-      </div>
-      <div class="overlay"></div>
-    </header>
-
-    <!-- LOGIN -->
-    <section class="callout">
-      <div class="container text-center">
-        <h2 class="mx-auto mb-5">Aqui entra o formulário e o cadastro com javascript</h2>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer text-center">
-      <div class="container">
-        <ul class="list-inline mb-5">
-          <li class="list-inline-item">
-            <a class="social-link rounded-circle text-white mr-3" href="#">
-              <i class="icon-social-facebook"></i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="social-link rounded-circle text-white mr-3" href="#">
-              <i class="icon-social-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="social-link rounded-circle text-white" href="#">
-              <i class="icon-social-github"></i>
-            </a>
-          </li>
-        </ul>
-        <p class="text-muted small mb-0">Copyright &copy; Unilasalle-RJ 2018</p>
-      </div>
-    </footer>
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="static/vendor/jquery/jquery.min.js"></script>
-    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="static/js/stylish-portfolio.min.js"></script>
-
-  </body>
-
-</html>
+   

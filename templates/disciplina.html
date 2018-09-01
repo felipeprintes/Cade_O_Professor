@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1>Curso de {{ disciplina['nome_disciplina'] }}</h1>
+            <p>descricão: {{ disciplina['descricao'] }}</p>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">Codigo da turma</div>
+                        <div class="card-body">
+                            dia - horario - sala - bloco
+
+                            <a href="#">Seguir turma</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">Codigo da turma</div>
+                        <div class="card-body">
+                            dia - horario - sala - bloco
+                            <a href="#">Seguir turma</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">Codigo da turma</div>
+                        <div class="card-body">
+                            dia - horario - sala - bloco
+
+                            <a href="#">Seguir turma</a>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="alert alert-success">
+                    <strong>Seria legal que a api retornasse todas as turmas de uma disciplina</strong>
+                    <p>{"status":200,"error":null,"response":[</p>
+                    <p> {</p>
+                    <p> "id_disciplina":1,</p>
+                    <p> "nome_disciplina":"POO",</p>
+                    <p> "descricao":"Programação Orientada ..."</p>
+                    <p> turmas: [</p>
+                    <p> {</p>
+                    <p> "codigo":"xxx",</p>
+                    <p> "horario":"xxx",</p>
+                    <p> "sala":"xxx"</p>
+                    <p> },</p>
+                    <p> {</p>
+                    <p> "codigo":"xxx",</p>
+                    <p> "horario":"xxx",</p>
+                    <p> "sala":"xxx"</p>
+                    <p> }</p>
+                    <p> ]</p>
+                    <p> }...</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

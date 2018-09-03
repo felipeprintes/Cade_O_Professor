@@ -3,8 +3,16 @@ import json, requests
 app = Flask(__name__)
 
 class Api:
-    aluno_url = 'http://localhost:8080/api/v1/alunos/'
-    disciplina_url = 'http://localhost:8080/api/v1/disciplinas/'
+
+    def __init__(self):
+        self.url_padrao = 'http://localhost:8080/api/v1'
+        self.aluno_url =  self.url_padrao + '/alunos/'
+        self.disciplina_url  = self.url_padrao + '/disciplinas/'
+
+    def cadastro_aluno(self):
+        url_param = self.url_padrao + '/alunos/'
+        return url_param
+
 
     def get_aluno_by_id(self, id):
         url_param = self.aluno_url+"{}"
@@ -13,6 +21,7 @@ class Api:
     def get_disciplina_by_id(self, id):
         url_param = self.disciplina_url+"{}"
         return url_param.format(id)
+
 
 
 class Aluno:
@@ -27,18 +36,20 @@ def home():
 	return render_template("index.html")
 
 
-@app.route("/cadastro-aluno/", methods=['GET', 'POST'])
+@app.route("/cadastro-aluno/", methods=['POST'])
 def cadastro_usuario():
+    print('entrou no cadastro')
     if request.method == "POST":
         print("funcionando")    
-        nome = request.form.get("nome")
+        nome =  request.form.get("nome")
         email = request.form.get("email")
-        senha = request.form.get("senha")
-
+        senha = request.form.get("senha")                      
         api = Api()
-        dados = {"nome":nome, "email":email, "senha": senha}
-        response = requests.post(api.aluno_url, dados)
+        
+        dados = {"nome": nome, "email": email, "senha": senha}
+        response = requests.post(api.cadastro_aluno(), dados)
         if response.ok:
+            print('entrou no ok')
             json_response = json.loads(response.content)
             
             return redirect("/aluno/perfil/{}".format(json_response['response']['insertId']))

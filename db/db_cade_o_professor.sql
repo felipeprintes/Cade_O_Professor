@@ -1,5 +1,13 @@
 CREATE DATABASE cade_o_professor CHARACTER SET utf8 COLLATE utf8_general_ci;
 
+DROP TABLE IF EXISTS `alunos`;
+DROP TABLE IF EXISTS `professores`;
+DROP TABLE IF EXISTS `disciplinas`;
+DROP TABLE IF EXISTS `segue`;
+DROP TABLE IF EXISTS `horarios`;
+DROP TABLE IF EXISTS `alteracao_sala`;
+DROP TABLE IF EXISTS `turmas`;
+
 CREATE TABLE `alunos` (
 	`id_aluno` INT NOT NULL AUTO_INCREMENT,
 	`nome` varchar(200) NOT NULL,

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="callout">
+  <div class="container text-center">
+    <h2 class="mx-auto mb-5">Cadastro de disciplinas</h2>
+  </div>
+  <div class="col-md-6" style="width:60vh; margin: 0 auto;">
+      <form class="form-horizontal" method="POST" action="{{url_for('cadastrar_disciplina')}}">
+          {% if msg != null %}
+          <div class="form-group">
+            <div class="col-sm-4 col-md-12">
+              <p class="{{ msg.class }}">{{ msg.texto }}</p>
+            </div>
+          </div>
+          {% endif %}  
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="nome">Nome:</label>
+          <div class="col-sm-4 col-md-12">
+            <input type="text" class="form-control" id="nome" name="nome" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="email">Descrição:</label>
+          <div class="col-sm-4 col-md-12">
+            <textarea class="form-control" name="descricao" required maxlength="50" minlength="5" ></textarea>
+          </div>
+        </div>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-12">
+            <button type="submit" class="btn btn-default" style="background-color: #8d1d80!important;width: 100%;color: white;">Cadastrar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</section>
+{% endblock %}

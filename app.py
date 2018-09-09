@@ -8,9 +8,14 @@ class Api:
         self.url_padrao = 'http://localhost:8080/api/v1'
         self.aluno_url =  self.url_padrao + '/alunos/'
         self.disciplina_url  = self.url_padrao + '/disciplinas/'
+        self.professor_url  = self.url_padrao + '/professores/'
 
     def cadastro_aluno(self):
         url_param = self.url_padrao + '/alunos/'
+        return url_param
+
+    def cadastro_disciplina(self):
+        url_param = self.url_padrao + '/disciplinas/incluir/'
         return url_param
 
 
@@ -48,11 +53,10 @@ def cadastro_usuario():
         
         dados = {"nome": nome, "email": email, "senha": senha}
         response = requests.post(api.cadastro_aluno(), dados)
-        if response.ok:
+        if response.status_code == 200:
             print('entrou no ok')
             json_response = json.loads(response.content)
-            
-            return redirect("/aluno/perfil/{}".format(json_response['response']['insertId']))
+            return redirect("/aluno/perfil/{}".format(json_response['response']['id']))
         else:
             return "<h1>Erro ao efetuar cadastro</h1>"
         
@@ -103,11 +107,44 @@ def disciplina():
     
     if response.ok:
         json_response = json.loads(response.content)
-
+        print(json_response)
         return render_template('disciplina.html', disciplina=json_response['response'][0])
 
     else:
         return "<h1>disciplina não encontrada</h1>"
+
+@app.route("/disciplina/cadastrar", methods=['POST','GET'])
+def cadastrar_disciplina():
+    if request.method == "POST":
+        print("funcionando")    
+        disciplina =  request.form.get("nome")
+        descricao = request.form.get("descricao")                     
+        api = Api()
+        
+        dados = {"disciplina": disciplina, "descricao": descricao}
+        response = requests.post(api.cadastro_disciplina(), dados)
+        if response.status_code == 200:
+            msg = {"texto":"Disciplina Cadastrada com sucesso!","class":"alert alert-success"}
+        else:
+            msg = {"texto":"Erro ao cadastrar disciplina!","class":"alert alert-danger"}
+
+        return render_template("disciplina_form.html", msg=msg)
+
+    if request.method == "GET":
+        return render_template("disciplina_form.html")
+
+@app.route("/truma/cadastrar", methods=['POST','GET'])
+def cadastrar_turma():
+    api = Api()
+    if request.method == "GET":
+        
+        disciplinas = requests.get(api.disciplina_url)
+        json_disciplinas = json.loads(disciplinas.content)
+
+        professores = requests.get(api.professor_url)
+        json_professor = json.loads(professores.content)
+        return render_template("turma_form.html", disciplinas=json_disciplinas['response'], professores=json_professor['response'])
+
 
 if __name__ == "__main__":
     app.run(port=3000, debug=True)

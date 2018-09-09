@@ -40,7 +40,7 @@
           <a class="js-scroll-trigger" href="#page-top">Cadê o professor?</a>
         </li>
         <li class="sidebar-nav-item">
-          <a class="js-scroll-trigger" href="#page-top">Início</a>
+          <a class="js-scroll-trigger" href="{{url_for('home')}}">Início</a>
         </li>
         <li class="sidebar-nav-item">
           <a class="js-scroll-trigger" href="#about">Login e Cadastro</a>
@@ -48,6 +48,22 @@
         <li class="sidebar-nav-item">
           <a class="js-scroll-trigger" href="#contact">Contato</a>
         </li>
+
+        <li class="sidebar-brand">
+            <a class="js-scroll-trigger" href="#page-top">Area restrita</a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="{{url_for('cadastrar_disciplina')}}">Cadastrar Disciplinas</a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="{{url_for('cadastrar_turma')}}">Cadastrar Turmas</a>
+          </li>
+          <li class="sidebar-nav-item">
+              <a class="js-scroll-trigger" href="#">Cadastrar Professores</a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#">Cadastrar Horarios</a>
+          </li>
       </ul>
     </nav>
 

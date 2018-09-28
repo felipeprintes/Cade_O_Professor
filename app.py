@@ -133,7 +133,7 @@ def cadastrar_disciplina():
     if request.method == "GET":
         return render_template("disciplina_form.html")
 
-@app.route("/truma/cadastrar", methods=['POST','GET'])
+@app.route("/turma/cadastrar", methods=['POST','GET'])
 def cadastrar_turma():
     api = Api()
     if request.method == "GET":

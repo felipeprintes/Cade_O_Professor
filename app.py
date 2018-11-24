@@ -9,6 +9,7 @@ class Api:
         self.aluno_url =  self.url_padrao + '/alunos/'
         self.disciplina_url  = self.url_padrao + '/disciplinas/'
         self.professor_url  = self.url_padrao + '/professores/'
+        self.turma_url = self.url_padrao + '/turmas'
 
     def cadastro_aluno(self):
         url_param = self.url_padrao + '/alunos/'
@@ -45,36 +46,39 @@ def home():
 def cadastro_usuario():
     print('entrou no cadastro')
     if request.method == "POST":
-        print("funcionando")    
         nome =  request.form.get("nome")
         email = request.form.get("email")
-        senha = request.form.get("senha")                      
+        senha = request.form.get("senha")
         api = Api()
-        
+
         dados = {"nome": nome, "email": email, "senha": senha}
         response = requests.post(api.cadastro_aluno(), dados)
         if response.status_code == 200:
-            print('entrou no ok')
+            print('status 200 retornado')
             json_response = json.loads(response.content)
             return redirect("/aluno/perfil/{}".format(json_response['response']['id']))
         else:
             return "<h1>Erro ao efetuar cadastro</h1>"
-        
+
     else:
         return "não deu"
 
 
 @app.route("/aluno/perfil/<id>", methods=['GET'])
 def aluno_perfil(id):
+    print("-> entrou na rota perfil")
     api = Api()
     response = requests.get(api.get_aluno_by_id(id))
-    
+
     if response.status_code == 200:
+        print("-> retornou status 200")
         json_response = json.loads(response.content)
-        id_nome = json_response['response'][0]['id_aluno']
-        nome = json_response['response'][0]['nome']
-        email = json_response['response'][0]['email']
-        
+        print(json_response)
+        id_nome = json_response['response']['id_aluno']
+        nome = json_response['response']['nome']
+        email = json_response['response']['email']
+        print(nome)
+
         aluno = Aluno(id_nome,nome,email)
         response_disciplinas = requests.get(api.disciplina_url)
         json_disciplinas = json.loads(response_disciplinas.content)
